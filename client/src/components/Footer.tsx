@@ -10,11 +10,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="md:col-span-2">
-            <img 
-              src={logoJoy} 
-              alt="JOY Logo" 
-              className="h-16 w-auto mb-6 filter brightness-0 invert"
-            />
+            <div className="h-16 flex items-center mb-6">
+              <div className="font-[Abril_Fatface] text-3xl text-white tracking-wider flex items-center">
+                <span className="text-yellow-400">JOY</span>
+                <div className="ml-3 text-sm font-light text-gray-300 leading-tight">
+                  La Mode à<br/>Tout Prix
+                </div>
+              </div>
+            </div>
             <p className="text-gray-300 font-light leading-relaxed mb-6 max-w-md">
               JOY redéfinit l'art de vivre avec des collections exclusives qui célèbrent 
               l'élégance et la sophistication à la française.

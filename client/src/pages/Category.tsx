@@ -16,6 +16,7 @@ export default function Category() {
 
   const { data: products = [], isLoading } = useQuery<Product[]>({
     queryKey: ["/api/products/category", category],
+    queryFn: () => fetch(`/api/products/category/${category}`).then(res => res.json()),
   });
 
   const getCategoryName = (cat: string) => {

@@ -35,11 +35,14 @@ export default function Header() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/">
-                <img 
-                  src={logoJoy} 
-                  alt="JOY - La Mode à Tout Prix" 
-                  className="h-12 w-auto cursor-pointer filter brightness-0"
-                />
+                <div className="h-12 flex items-center">
+                  <div className="font-[Abril_Fatface] text-2xl text-gray-900 tracking-wider flex items-center">
+                    <span className="text-yellow-600">JOY</span>
+                    <div className="ml-2 text-xs font-light text-gray-600 leading-tight">
+                      La Mode à<br/>Tout Prix
+                    </div>
+                  </div>
+                </div>
               </Link>
             </div>
 
