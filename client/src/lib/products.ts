@@ -1,14 +1,11 @@
 import type { Product } from "@shared/schema";
 
 /**
- * Format price to French currency format
+ * Format price to Algerian currency format
  */
 export function formatPrice(price: string | number): string {
   const numericPrice = typeof price === 'string' ? parseFloat(price) : price;
-  return numericPrice.toLocaleString('fr-FR', {
-    style: 'currency',
-    currency: 'EUR'
-  });
+  return numericPrice.toLocaleString('fr-DZ') + ' DA';
 }
 
 /**

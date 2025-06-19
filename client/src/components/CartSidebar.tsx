@@ -17,10 +17,7 @@ export default function CartSidebar({ isOpen = false, onClose }: CartSidebarProp
   const { toast } = useToast();
 
   const formatPrice = (price: number) => {
-    return price.toLocaleString('fr-FR', {
-      style: 'currency',
-      currency: 'EUR'
-    });
+    return price.toLocaleString('fr-DZ') + ' DA';
   };
 
   const handleUpdateQuantity = async (itemId: number, newQuantity: number) => {

@@ -16,6 +16,7 @@ export default function Header() {
     { name: "Hommes", href: "/category/hommes" },
     { name: "Femmes", href: "/category/femmes" },
     { name: "Enfants", href: "/category/enfants" },
+    { name: "Accessoires", href: "/category/accessoires" },
     { name: "Contact", href: "/contact" },
   ];
 
