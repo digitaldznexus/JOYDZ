@@ -38,7 +38,7 @@ export default function Header() {
                 <img 
                   src={logoJoy} 
                   alt="JOY - La Mode à Tout Prix" 
-                  className="h-12 w-auto cursor-pointer"
+                  className="h-12 w-auto cursor-pointer filter brightness-0"
                 />
               </Link>
             </div>

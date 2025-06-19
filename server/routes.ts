@@ -27,8 +27,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/products/category/:category", async (req, res) => {
     try {
       const { category } = req.params;
-      const products = await storage.getProductsByCategory(category);
-      res.json(products);
+      if (category === 'all') {
+        const products = await storage.getProducts();
+        res.json(products);
+      } else {
+        const products = await storage.getProductsByCategory(category);
+        res.json(products);
+      }
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch products by category" });
     }
