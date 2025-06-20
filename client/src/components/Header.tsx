@@ -3,6 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Search, User, ShoppingBag, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/contexts/CartContext";
+import CartSidebar from "@/components/CartSidebar";
 import logoJoy from "@assets/logo joy_1750370510245.jpg";
 
 export default function Header() {
@@ -116,13 +117,8 @@ export default function Header() {
         )}
       </header>
 
-      {/* Cart Sidebar Toggle */}
-      <div
-        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
-          isCartOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={toggleCart}
-      />
+      {/* Cart Sidebar */}
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
 }
