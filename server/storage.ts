@@ -55,7 +55,7 @@ export class MemStorage implements IStorage {
       {
         name: "Costume Prestige",
         description: "Costume trois pièces en laine vierge italienne, coupe moderne et finitions exceptionnelles. Idéal pour les occasions formelles.",
-        price: "285000.00",
+        price: "285000 DA",
         category: "hommes",
         image: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: [
@@ -70,7 +70,7 @@ export class MemStorage implements IStorage {
       {
         name: "Chemise en Soie",
         description: "Chemise en soie pure avec détails nacrés. Coupe ajustée et confort exceptionnel pour un style raffiné.",
-        price: "68000.00",
+        price: "68000 DA",
         category: "hommes",
         image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: ["https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
@@ -82,7 +82,7 @@ export class MemStorage implements IStorage {
       {
         name: "Veste Blazer Premium",
         description: "Blazer en cachemire et laine mélangés. Coupe slim moderne avec revers crantés et doublure en soie.",
-        price: "188000.00",
+        price: "188000 DA",
         category: "hommes",
         image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: ["https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
@@ -94,7 +94,7 @@ export class MemStorage implements IStorage {
       {
         name: "Pantalon de Costume",
         description: "Pantalon de costume en laine super 150's. Coupe droite élégante avec pli permanent et finition impeccable.",
-        price: "57000.00",
+        price: "57000 DA",
         category: "hommes",
         image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: ["https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
@@ -108,7 +108,7 @@ export class MemStorage implements IStorage {
       {
         name: "Robe de Soirée Élégante",
         description: "Robe longue en soie avec détails brodés à la main. Coupe flatteuse et élégance intemporelle pour vos soirées prestigieuses.",
-        price: "368000.00",
+        price: "368000 DA",
         category: "femmes",
         image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: [
@@ -123,7 +123,7 @@ export class MemStorage implements IStorage {
       {
         name: "Tailleur Executive",
         description: "Tailleur deux pièces en laine stretch. Parfait équilibre entre féminité et autorité pour la femme moderne.",
-        price: "252000.00",
+        price: "252000 DA",
         category: "femmes",
         image: "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: ["https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
@@ -135,7 +135,7 @@ export class MemStorage implements IStorage {
       {
         name: "Blouse en Dentelle",
         description: "Blouse en dentelle de Calais avec détails en soie. Transparence délicate et sophistication parisienne.",
-        price: "78000.00",
+        price: "78000 DA",
         category: "femmes",
         image: "https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: ["https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
@@ -147,10 +147,10 @@ export class MemStorage implements IStorage {
       {
         name: "Jupe Plissée Haute Couture",
         description: "Jupe plissée mi-longue en crêpe de soie. Plissage permanent et taille haute pour une silhouette élégante.",
-        price: "98000.00",
+        price: "98000 DA",
         category: "femmes",
-        image: "https://images.unsplash.com/photo-1583496661160-fb5886a13d4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
-        images: ["https://images.unsplash.com/photo-1583496661160-fb5886a13d4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
+        image: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
+        images: ["https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
         sizes: ["34", "36", "38", "40", "42"],
         colors: ["Noir", "Marine", "Camel"],
         inStock: 16,
@@ -176,7 +176,7 @@ export class MemStorage implements IStorage {
       {
         name: "Robe Princesse Enfant",
         description: "Robe de cérémonie pour petite fille avec tulle et broderies délicates. Parfaite pour les occasions spéciales.",
-        price: "42000.00",
+        price: "42000 DA",
         category: "enfants",
         image: "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: ["https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
@@ -188,7 +188,7 @@ export class MemStorage implements IStorage {
       {
         name: "Manteau Enfant Luxury",
         description: "Manteau d'hiver en laine mérinos pour enfant. Doublure chaude et style intemporel pour les petits fashionistas.",
-        price: "63000.00",
+        price: "63000 DA",
         category: "enfants",
         image: "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: ["https://images.unsplash.com/photo-1596755389378-c31d21fd1273?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
@@ -200,10 +200,10 @@ export class MemStorage implements IStorage {
       {
         name: "Polo Premium Enfant",
         description: "Polo en coton piqué premium avec broderie discrète. Confort quotidien et élégance décontractée.",
-        price: "12800.00",
+        price: "12800 DA",
         category: "enfants",
-        image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
-        images: ["https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
+        image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
+        images: ["https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
         sizes: ["4 ans", "6 ans", "8 ans", "10 ans", "12 ans"],
         colors: ["Blanc", "Marine", "Rouge"],
         inStock: 35,
@@ -214,7 +214,7 @@ export class MemStorage implements IStorage {
       {
         name: "Sac à Main de Luxe",
         description: "Sac en cuir italien pleine fleur avec fermoir doré. Compartiments multiples et finitions artisanales de haute qualité.",
-        price: "134000.00",
+        price: "134000 DA",
         category: "accessoires",
         image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: [
@@ -229,7 +229,7 @@ export class MemStorage implements IStorage {
       {
         name: "Montre de Luxe",
         description: "Montre suisse avec mouvement automatique et bracelet en cuir véritable. Élégance horlogère intemporelle.",
-        price: "435000.00",
+        price: "435000 DA",
         category: "accessoires",
         image: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: ["https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
@@ -241,7 +241,7 @@ export class MemStorage implements IStorage {
       {
         name: "Foulard en Soie",
         description: "Foulard carré en soie twill avec motifs exclusifs. Accessoire polyvalent pour sublimer toutes vos tenues.",
-        price: "27000.00",
+        price: "27000 DA",
         category: "accessoires",
         image: "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000",
         images: ["https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=1000"],
@@ -291,6 +291,11 @@ export class MemStorage implements IStorage {
     const product: Product = {
       ...insertProduct,
       id,
+      images: insertProduct.images || [],
+      sizes: insertProduct.sizes || [],
+      colors: insertProduct.colors || [],
+      inStock: insertProduct.inStock || 0,
+      featured: insertProduct.featured || 0,
       createdAt: new Date(),
     };
     this.products.set(id, product);
@@ -307,6 +312,9 @@ export class MemStorage implements IStorage {
     const cartItem: CartItem = {
       ...insertItem,
       id,
+      quantity: insertItem.quantity || 1,
+      size: insertItem.size || null,
+      color: insertItem.color || null,
       createdAt: new Date(),
     };
     this.cartItems.set(id, cartItem);
@@ -344,6 +352,7 @@ export class MemStorage implements IStorage {
     const message: ContactMessage = {
       ...insertMessage,
       id,
+      telephone: insertMessage.telephone || null,
       createdAt: new Date(),
     };
     this.contactMessages.set(id, message);

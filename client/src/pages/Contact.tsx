@@ -86,258 +86,209 @@ export default function Contact() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-[Abril_Fatface] text-4xl md:text-5xl text-gray-900 mb-6">
-            Contact
-          </h1>
+    <div className="min-h-screen bg-gray-50">
+      {/* En-tête avec image */}
+      <div className="relative h-96 w-full overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&h=600"
+          alt="Contactez-nous"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+          <div className="text-center text-white px-4">
+            <h1 className="font-[Abril_Fatface] text-4xl md:text-6xl mb-4">
+              Contactez-nous
+            </h1>
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto font-light">
+              Notre équipe est à votre écoute pour répondre à toutes vos questions
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center mb-12">
           <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light">
             Notre équipe est à votre disposition pour vous accompagner dans votre expérience JOY.
           </p>
         </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h2 className="font-[Abril_Fatface] text-2xl text-gray-900 mb-8">
-                Informations
-              </h2>
-              <p className="text-gray-600 font-light leading-relaxed mb-8">
-                Découvrez l'univers JOY dans notre boutique d'Oran ou contactez-nous pour toute question 
-                concernant nos collections, nos services ou pour prendre rendez-vous.
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Nos coordonnées</h2>
+              <p className="text-gray-600 mb-6">
+                Notre équipe est disponible pour répondre à vos questions et vous accompagner dans votre expérience JOY.
               </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {contactInfo.map((item, index) => (
-                <Card key={index} className="border-gray-100 hover:shadow-md transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="flex items-start space-x-4">
-                      <div className="flex-shrink-0 p-2 bg-yellow-100 rounded-lg">
-                        <item.icon className="h-5 w-5 text-yellow-600" />
+              
+              <div className="space-y-6">
+                {contactInfo.map((item, index) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={index} className="flex items-start">
+                      <div className="flex-shrink-0 bg-yellow-50 p-3 rounded-full">
+                        <Icon className="h-6 w-6 text-yellow-600" />
                       </div>
-                      <div>
-                        <h3 className="font-medium text-gray-900 mb-2">
-                          {item.title}
-                        </h3>
-                        <div className="space-y-1">
-                          {item.content.map((line, lineIndex) => (
-                            <p key={lineIndex} className="text-gray-600 text-sm font-light">
-                              {line}
-                            </p>
-                          ))}
-                        </div>
+                      <div className="ml-4">
+                        <h3 className="text-lg font-medium text-gray-900">{item.title}</h3>
+                        {Array.isArray(item.content) ? (
+                          <ul className="mt-1 space-y-1">
+                            {item.content.map((content, i) => (
+                              <li key={i} className="text-base text-gray-600">
+                                {content}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-base text-gray-600">{item.content}</p>
+                        )}
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
+                  );
+                })}
+              </div>
             </div>
-
-            {/* Additional Information */}
-            <Card className="border-yellow-200 bg-yellow-50">
-              <CardContent className="p-6">
-                <h3 className="font-medium text-gray-900 mb-3">
-                  Rendez-vous personnalisé
-                </h3>
-                <p className="text-gray-700 text-sm font-light leading-relaxed">
-                  Pour une expérience sur-mesure, nous vous proposons des consultations privées dans notre atelier. 
-                  Contactez-nous pour planifier votre rendez-vous et découvrir nos créations en exclusivité.
-                </p>
-              </CardContent>
-            </Card>
           </div>
 
           {/* Contact Form */}
-          <div>
-            <Card>
-              <CardHeader>
-                <CardTitle className="font-[Abril_Fatface] text-2xl text-gray-900">
-                  Nous Contacter
-                </CardTitle>
-                <p className="text-gray-600 font-light">
-                  Remplissez ce formulaire et nous vous répondrons rapidement.
-                </p>
-              </CardHeader>
-              <CardContent>
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="prenom"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Prénom *</FormLabel>
-                            <FormControl>
-                              <Input 
-                                placeholder="Votre prénom" 
-                                className="bg-gray-50 border-gray-200 focus:border-yellow-600 focus:ring-yellow-600"
-                                {...field} 
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="nom"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Nom *</FormLabel>
-                            <FormControl>
-                              <Input 
-                                placeholder="Votre nom" 
-                                className="bg-gray-50 border-gray-200 focus:border-yellow-600 focus:ring-yellow-600"
-                                {...field} 
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Envoyez-nous un message</h2>
+            
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="prenom"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Prénom</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Votre prénom" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="nom"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Nom</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Votre nom" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email *</FormLabel>
-                          <FormControl>
-                            <Input 
-                              type="email" 
-                              placeholder="votre.email@exemple.com" 
-                              className="bg-gray-50 border-gray-200 focus:border-yellow-600 focus:ring-yellow-600"
-                              {...field} 
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder="votre@email.com" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                    <FormField
-                      control={form.control}
-                      name="telephone"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Téléphone</FormLabel>
-                          <FormControl>
-                            <Input 
-                              type="tel" 
-                              placeholder="Votre numéro de téléphone" 
-                              className="bg-gray-50 border-gray-200 focus:border-yellow-600 focus:ring-yellow-600"
-                              {...field} 
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                <FormField
+                  control={form.control}
+                  name="telephone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Téléphone (optionnel)</FormLabel>
+                      <FormControl>
+                        <Input type="tel" placeholder="Votre numéro de téléphone" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                    <FormField
-                      control={form.control}
-                      name="sujet"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Sujet *</FormLabel>
-                          <Select onValueChange={field.onChange} defaultValue={field.value}>
-                            <FormControl>
-                              <SelectTrigger className="bg-gray-50 border-gray-200 focus:border-yellow-600 focus:ring-yellow-600">
-                                <SelectValue placeholder="Sélectionnez un sujet" />
-                              </SelectTrigger>
-                            </FormControl>
-                            <SelectContent>
-                              <SelectItem value="commande">Question sur une commande</SelectItem>
-                              <SelectItem value="produit">Information produit</SelectItem>
-                              <SelectItem value="rendez-vous">Prise de rendez-vous</SelectItem>
-                              <SelectItem value="retour">Retour/Échange</SelectItem>
-                              <SelectItem value="partenariat">Partenariat</SelectItem>
-                              <SelectItem value="autre">Autre</SelectItem>
-                            </SelectContent>
-                          </Select>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                <FormField
+                  control={form.control}
+                  name="sujet"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Sujet</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Sélectionnez un sujet" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="question">Question générale</SelectItem>
+                          <SelectItem value="commande">Suivi de commande</SelectItem>
+                          <SelectItem value="retour">Retour produit</SelectItem>
+                          <SelectItem value="autre">Autre</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Message *</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Décrivez votre demande en détail..."
-                              className="bg-gray-50 border-gray-200 focus:border-yellow-600 focus:ring-yellow-600 min-h-[120px] resize-none"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                <FormField
+                  control={form.control}
+                  name="message"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Message</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="Décrivez-nous votre demande..."
+                          className="resize-none min-h-[150px]"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-                    <Button
-                      type="submit"
-                      size="lg"
-                      disabled={isSubmitting}
-                      className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-medium tracking-wide"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                          Envoi en cours...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="h-4 w-4 mr-2" />
-                          Envoyer le Message
-                        </>
-                      )}
-                    </Button>
-
-                    <p className="text-xs text-gray-500 text-center">
-                      En soumettant ce formulaire, vous acceptez que JOY traite vos données personnelles 
-                      pour répondre à votre demande.
-                    </p>
-                  </form>
-                </Form>
-              </CardContent>
-            </Card>
+                <Button
+                  type="submit"
+                  className="w-full bg-yellow-600 hover:bg-yellow-700 py-6 text-lg"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 h-5 w-5" />
+                      Envoyer le message
+                    </>
+                  )}
+                </Button>
+              </form>
+            </Form>
           </div>
         </div>
 
-        {/* Additional Services */}
-        <div className="mt-20 bg-gray-50 rounded-2xl p-8 md:p-12">
-          <div className="text-center mb-12">
-            <h2 className="font-[Abril_Fatface] text-3xl text-gray-900 mb-4">
-              Services Exclusifs
-            </h2>
-            <p className="text-gray-600 font-light max-w-2xl mx-auto">
-              Découvrez nos services premium pour une expérience JOY exceptionnelle.
-            </p>
-          </div>
-
+        {/* Additional Info */}
+        <div className="mt-24">
+          <h2 className="text-2xl font-bold text-center text-gray-900 mb-12">
+            Notre engagement à votre service
+          </h2>
+          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Phone className="h-8 w-8 text-yellow-600" />
-              </div>
-              <h3 className="font-medium text-gray-900 mb-2">Conseil Personnalisé</h3>
-              <p className="text-gray-600 text-sm font-light">
-                Nos stylistes vous accompagnent dans le choix de vos pièces pour créer le look parfait.
-              </p>
-            </div>
-
             <div className="text-center">
               <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MapPin className="h-8 w-8 text-yellow-600" />
@@ -345,6 +296,16 @@ export default function Contact() {
               <h3 className="font-medium text-gray-900 mb-2">Livraison Premium</h3>
               <p className="text-gray-600 text-sm font-light">
                 Service de livraison soignée avec emballage luxe pour préserver l'excellence de vos achats.
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Phone className="h-8 w-8 text-yellow-600" />
+              </div>
+              <h3 className="font-medium text-gray-900 mb-2">Service Client Premium</h3>
+              <p className="text-gray-600 text-sm font-light">
+                Une équipe dédiée à votre écoute pour une expérience client exceptionnelle.
               </p>
             </div>
 

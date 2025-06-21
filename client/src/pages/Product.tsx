@@ -25,11 +25,26 @@ export default function ProductPage() {
     queryKey: [`/api/products/${id}`],
   });
 
-  const formatPrice = (price: string) => {
-    return parseFloat(price).toLocaleString('fr-FR', {
-      style: 'currency',
-      currency: 'EUR'
-    });
+  const formatPrice = (price: string | number) => {
+    // On extrait le nombre du prix, qu'il soit déjà formaté ou non
+    let priceNumber: number;
+    
+    if (typeof price === 'string') {
+      // Si c'est une chaîne avec 'DA', on extrait la partie numérique
+      if (price.includes('DA')) {
+        priceNumber = parseFloat(price.replace(/[^0-9,]/g, '').replace(',', '.'));
+      } else {
+        priceNumber = parseFloat(price);
+      }
+    } else {
+      priceNumber = price;
+    }
+    
+    // On divise par 100 pour enlever les deux derniers zéros
+    priceNumber = priceNumber / 100;
+    
+    // On formate avec l'espace comme séparateur de milliers et on ajoute ' DA'
+    return `${priceNumber.toLocaleString('fr-FR', { maximumFractionDigits: 0 })} DA`;
   };
 
   const getCategoryName = (category: string) => {

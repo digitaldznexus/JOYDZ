@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
-import { ArrowRight, Star, Sparkles } from "lucide-react";
+import { ArrowRight, Star, Sparkles, ChevronDown } from "lucide-react";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
+import { useInView } from "react-intersection-observer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import ProductCard from "@/components/ProductCard";
@@ -32,52 +35,135 @@ export default function Home() {
     }
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  // Scroll to next section
+  const scrollToNextSection = () => {
+    const nextSection = document.getElementById('collections-section');
+    nextSection?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-screen bg-gradient-to-br from-gray-900 to-black">
-        <div
+      <section className="relative h-screen bg-gradient-to-br from-gray-900 to-black overflow-hidden">
+        <motion.div
           className="absolute inset-0 bg-cover bg-center opacity-60"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')"
           }}
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, ease: [0.16, 0.77, 0.47, 0.97] }}
         />
         <div className="relative z-10 flex items-center justify-center h-full text-center text-white">
-          <div className="max-w-4xl px-4">
-            <div className="flex items-center justify-center mb-6">
+          <motion.div 
+            className="max-w-4xl px-4"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+          >
+            <motion.div 
+              className="flex items-center justify-center mb-6"
+              variants={itemVariants}
+            >
               <Sparkles className="h-8 w-8 text-yellow-400 mr-2" />
               <Badge variant="secondary" className="bg-yellow-600/20 text-yellow-300 border-yellow-400">
                 Collection Exclusive
               </Badge>
-            </div>
-            <h1 className="font-[Abril_Fatface] text-5xl md:text-7xl lg:text-8xl mb-6 tracking-wide joy-text-shadow">
+            </motion.div>
+            
+            <motion.h1 
+              className="font-[Abril_Fatface] text-5xl md:text-7xl lg:text-8xl mb-6 tracking-wide joy-text-shadow"
+              variants={itemVariants}
+            >
               JOY
-            </h1>
-            <p className="text-xl md:text-2xl font-light mb-8 tracking-widest">
+            </motion.h1>
+            
+            <motion.p 
+              className="text-xl md:text-2xl font-light mb-8 tracking-widest"
+              variants={itemVariants}
+            >
               La Mode à Tout Prix
-            </p>
-            <p className="text-lg md:text-xl mb-12 max-w-2xl mx-auto font-light leading-relaxed opacity-90">
+            </motion.p>
+            
+            <motion.p 
+              className="text-lg md:text-xl mb-12 max-w-2xl mx-auto font-light leading-relaxed opacity-90"
+              variants={itemVariants}
+            >
               Découvrez notre collection exclusive de vêtements de luxe pour hommes, femmes et enfants. L'élégance redéfinie.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-yellow-600 hover:bg-yellow-700 text-white px-12 py-4 text-lg tracking-widest">
-                DÉCOUVRIR LA COLLECTION
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+            </motion.p>
+            
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              variants={itemVariants}
+            >
+              <Link href="/category/all">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button 
+                    size="lg" 
+                    className="bg-yellow-600 hover:bg-yellow-700 text-white px-12 py-4 text-lg tracking-widest transform transition-transform"
+                  >
+                    DÉCOUVRIR LA COLLECTION
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </motion.div>
+              </Link>
               <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-white text-white hover:bg-white hover:text-black px-12 py-4 text-lg tracking-widest"
+                asChild
+                size="lg"
+                variant="outline"
+                className="bg-white/0 hover:bg-white/10 border-white text-white px-12 py-4 text-lg tracking-widest transition-all duration-300"
               >
-                NOTRE HISTOIRE
+                <Link href="#featured-products">
+                  SÉLECTION EXCLUSIVE
+                </Link>
               </Button>
-            </div>
-          </div>
+            </motion.div>
+            
+            <motion.div 
+              className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer"
+              onClick={scrollToNextSection}
+              animate={{ y: [0, 10, 0] }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: 'loop'
+              }}
+            >
+              <ChevronDown className="h-10 w-10 text-white/80 hover:text-white transition-colors" />
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Categories Section */}
-      <section className="py-24 bg-gray-50">
+      <section id="collections-section" className="py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="font-[Abril_Fatface] text-4xl md:text-5xl text-gray-900 mb-6">
@@ -120,7 +206,7 @@ export default function Home() {
       </section>
 
       {/* Featured Products Section */}
-      <section className="py-24 bg-white">
+      <section id="featured-products" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center mb-4">
@@ -153,7 +239,10 @@ export default function Home() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard 
+                  key={product.id} 
+                  product={product}
+                />
               ))}
             </div>
           )}

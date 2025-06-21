@@ -9,26 +9,70 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import ProductCard from "@/components/ProductCard";
 import type { Product } from "@shared/schema";
 
+// Fonction utilitaire pour obtenir le nom formaté d'une catégorie
+const getCategoryName = (cat: string) => {
+  const names = {
+    hommes: "Homme",
+    femmes: "Femme", 
+    enfants: "Enfant",
+    accessoires: "Accessoires",
+    collections: "Toutes les Collections",
+    all: "Toutes les Collections"
+  };
+  return names[cat as keyof typeof names] || cat;
+};
+
 export default function Category() {
   const { category } = useParams() as { category: string };
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState('name');
+  const isCollectionsPage = category === 'collections';
+  
+  // Configuration des images d'en-tête par catégorie
+  const categoryHeaders = {
+    hommes: {
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&h=600",
+      title: "HOMMES",
+      description: "Collection masculine alliant élégance classique et modernité raffinée"
+    },
+    femmes: {
+      image: "https://images.unsplash.com/photo-1509631179647-0177331693ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&h=600",
+      title: "FEMMES",
+      description: "Créations féminines où grâce et sophistication se rencontrent"
+    },
+    enfants: {
+      image: "https://images.unsplash.com/photo-1519457431-44ccd64a579b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&h=600",
+      title: "ENFANTS",
+      description: "Mode enfantine premium pour les petits avec un grand sens du style"
+    },
+    default: {
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1800&h=600",
+      title: getCategoryName(category).toUpperCase(),
+      description: `Découvrez notre sélection exclusive de produits ${getCategoryName(category).toLowerCase()}`
+    }
+  };
+  
+  const currentHeader = categoryHeaders[category as keyof typeof categoryHeaders] || categoryHeaders.default;
 
   const { data: products = [], isLoading } = useQuery<Product[]>({
-    queryKey: ["/api/products/category", category],
-    queryFn: () => fetch(`/api/products/category/${category}`).then(res => res.json()),
+    queryKey: [isCollectionsPage ? 'all-products' : 'category-products', category],
+    queryFn: async () => {
+      try {
+        const url = isCollectionsPage 
+          ? '/api/products'
+          : `/api/products/category/${category}`;
+        
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Erreur lors du chargement des produits');
+        }
+        return await response.json();
+      } catch (error) {
+        console.error('Erreur:', error);
+        return [];
+      }
+    },
   });
-
-  const getCategoryName = (cat: string) => {
-    const names = {
-      hommes: "Homme",
-      femmes: "Femme", 
-      enfants: "Enfant",
-      accessoires: "Accessoires",
-      all: "Toutes les Collections"
-    };
-    return names[cat as keyof typeof names] || cat;
-  };
 
   const getCategoryDescription = (cat: string) => {
     const descriptions = {
@@ -36,6 +80,7 @@ export default function Category() {
       femmes: "Créations féminines où grâce et sophistication se rencontrent",
       enfants: "Mode enfantine premium pour les petits avec un grand sens du style",
       accessoires: "Accessoires de luxe pour parfaire votre look avec distinction",
+      collections: "Découvrez l'intégralité de nos collections premium",
       all: "Découvrez l'intégralité de nos collections premium"
     };
     return descriptions[cat as keyof typeof descriptions] || "Découvrez notre sélection";
@@ -81,19 +126,33 @@ export default function Category() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header */}
-      <div className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="font-[Abril_Fatface] text-4xl md:text-5xl text-gray-900 mb-4">
-            {getCategoryName(category)}
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light mb-6">
-            {getCategoryDescription(category)}
-          </p>
-          <Badge variant="outline" className="border-yellow-600 text-yellow-600">
-            {products.length} produit{products.length !== 1 ? 's' : ''}
-          </Badge>
+      {/* En-tête de la catégorie avec image */}
+      <div className="relative h-96 w-full overflow-hidden">
+        <img
+          src={currentHeader.image}
+          alt={`Collection ${currentHeader.title}`}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+          <div className="text-center text-white px-4">
+            <h1 className="font-[Abril_Fatface] text-4xl md:text-6xl mb-4">
+              {currentHeader.title}
+            </h1>
+            <p className="text-xl md:text-2xl max-w-3xl mx-auto font-light mb-6">
+              {currentHeader.description}
+            </p>
+            <Badge variant="outline" className="border-white text-white bg-white/10 hover:bg-white/20">
+              {products.length} produit{products.length !== 1 ? 's' : ''}
+            </Badge>
+          </div>
         </div>
+      </div>
+      
+      {/* Description de la catégorie */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+        <p className="text-lg text-gray-600 max-w-3xl mx-auto font-light">
+          {getCategoryDescription(category)}
+        </p>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
