@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "client/package.json",
+      "src": "./package.json",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "dist"
@@ -11,8 +11,16 @@
   ],
   "routes": [
     {
-      "src": "/server/(.*)",
-      "status": 404
+      "src": "^/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "^/favicon.ico$",
+      "dest": "/favicon.ico"
+    },
+    {
+      "src": "^/assets/(.*)",
+      "dest": "/assets/$1"
     },
     {
       "src": "^/(.*)",
