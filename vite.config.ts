@@ -30,8 +30,11 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: undefined,
-      },
-    },
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash][extname]'
+      }
+    }
   },
   publicDir: path.resolve(import.meta.dirname, "client/public"),
   server: {
