@@ -23,7 +23,7 @@ export default defineConfig({
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
-  root: path.resolve(import.meta.dirname, "client"),
+
   base: '/',
   build: {
     outDir: path.resolve(import.meta.dirname, "client/dist"),
@@ -34,7 +34,8 @@ export default defineConfig({
         manualChunks: undefined,
         entryFileNames: 'assets/[name].[hash].js',
         chunkFileNames: 'assets/[name].[hash].js',
-        assetFileNames: 'assets/[name].[hash][extname]'
+        assetFileNames: 'assets/[name].[hash][extname]',
+        dir: path.resolve(import.meta.dirname, 'client/dist')
       }
     }
   },
